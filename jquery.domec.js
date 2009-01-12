@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 0.3.2
+ * jQuery DOMEC (DOM Elements Creator) 0.3.3
  * http://code.google.com/p/jquery-domec
  * http://plugins.jquery.com/project/DOMEC
  *
@@ -32,7 +32,7 @@
 				for (i = 0; i < children.length; i++) {
 					elem.append(children[i]);
 				}
-			} else {
+			} else if (typeof(children) != 'undefined' && children != null) {
 				elem.text(children.toString());
 			}
 
