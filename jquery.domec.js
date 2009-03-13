@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 0.3.3
+ * jQuery DOMEC (DOM Elements Creator) 0.3.4
  * http://code.google.com/p/jquery-domec
  * http://plugins.jquery.com/project/DOMEC
  *
@@ -15,10 +15,14 @@
 
  	// register jQuery extension
 	$.extend({
-		create: function(element, attributes, children) {
+		create: function(element, attributes, children, root) {
 
+			if (typeof(root) == 'undefined') {
+				root = document
+			}
+			
 			// create new element
-			var elem = $(document.createElement(element));
+			var elem = $(root.createElement(element));
 
 			// add passed attributes
 			if (typeof(attributes) == 'object') {
