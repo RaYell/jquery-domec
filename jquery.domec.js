@@ -17,6 +17,7 @@
 	$.extend({
 		create: function(element, attributes, children, root) {
 
+			// set root object
 			if (typeof(root) == 'undefined') {
 				root = document
 			}
