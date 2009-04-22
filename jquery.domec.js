@@ -10,35 +10,42 @@
  * Documentation	:	http://code.google.com/p/jquery-domec/wiki/Documentation
  * Changelog:		:	http://code.google.com/p/jquery-domec/wiki/Changelog
  */
-
-(function($) {
+ 
+ /*global document, jQuery*/
+(function ($) {
 
  	// register jQuery extension
 	$.extend({
-		create: function(element, attributes, children, root) {
+		create: function (element, attributes, children, root) {
 
-			// set root object
-			if (typeof(root) == 'undefined') {
-				root = document
+			if (typeof(root) === 'undefined') {
+				root = document;
 			}
+
+			// define variables
+			var key, i, elem;
 			
-			// create new element
-			var elem = $(root.createElement(element));
+			//create new element
+			elem = $(root.createElement(element));
 
 			// add passed attributes
-			if (typeof(attributes) == 'object') {
+			if (typeof(attributes) === 'object') {
 				for (key in attributes) {
-					elem.attr(key, attributes[key]);
+					if (typeof(attributes[key]) === 'string') {
+						elem.attr(key, attributes[key]);
+					}
 				}
 			}
 
 			// add passed child elements
-			if (typeof(children) == 'object') {
-				for (i = 0; i < children.length; i++) {
-					elem.append(children[i]);
+			if (children !== null) {
+				if (typeof(children) === 'object') {
+					for (i = 0; i < children.length; i += 1) {
+						elem.append(children[i]);
+					}
+				} else if (typeof(children) !== 'undefined') {
+					elem.text(children.toString());
 				}
-			} else if (typeof(children) != 'undefined' && children != null) {
-				elem.text(children.toString());
 			}
 
 			return elem;
