@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 0.3.4
+ * jQuery DOMEC (DOM Elements Creator) 1.0.0RC
  * http://code.google.com/p/jquery-domec
  * http://plugins.jquery.com/project/DOMEC
  *
