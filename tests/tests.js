@@ -1,15 +1,16 @@
-$(document).ready(function(){
+/*global $,document,module,test,ok,same*/
+$(document).ready(function () {
 	// hack for html validator (ol cannot be empty)
 	$('li').remove();
 	
 	var elem;
 	
-	test("Basic element creation", function() {
+	test("Basic element creation", function () {
 		var elem = $.create('div');
 		same(elem.get(0).tagName, "DIV", "We expect DIV element to be created");
 	});
 	
-	test("Attributes", function() {
+	test("Attributes", function () {
 		elem = $.create('div', {id: 'myId'});
 		same(elem.attr('id'), "myId", "(Single attribute) We expect element's identifier of myId");
 		elem = $.create('div', {id: 'myId', name: 'myName'});
@@ -19,7 +20,7 @@ $(document).ready(function(){
 		ok(elem.attr('id') === "", "We expect malformed attributes parameter to be ignored");
 	});
 	
-	test("Children", function() {
+	test("Children", function () {
 		elem = $.create('div', null, 'myText');
 		same(elem.text(), "myText", "We expect element's text to be set to myText");
 		elem = $.create('div', null, $.create('p'));
@@ -33,7 +34,7 @@ $(document).ready(function(){
 		ok(elem.children().length === 0, "We expect malformed children parameter to be ignored (int)");
 	});
 	
-	test("Root element", function() {
+	test("Root element", function () {
 		var iFrame = $.create('iframe', {id: 'myIframe'}).insertAfter('#main');
 		elem = $.create('div', null, null, $('iframe').get(0).contentDocument);
 		same(elem.get(0).tagName, "DIV", "We expect DIV element to be created");
