@@ -38,7 +38,7 @@
 			}
 
 			// add passed child elements
-			if (children !== undefined && children !== null{
+			if (children !== undefined && children !== null) {
 				if (typeof(children) === 'object') {
 					for (i = 0; i < children.length; i += 1) {
 						elem.append(children[i]);
