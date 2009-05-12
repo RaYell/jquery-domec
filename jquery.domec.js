@@ -3,7 +3,7 @@
  * http://code.google.com/p/jquery-domec
  * http://plugins.jquery.com/project/DOMEC
  *
- * Copyright (c) 2008 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
+ * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
@@ -18,7 +18,7 @@
 	$.extend({
 		create: function (element, attributes, children, root) {
 
-			if (typeof(root) === 'undefined') {
+			if (root === undefined) {
 				root = document;
 			}
 
@@ -38,12 +38,12 @@
 			}
 
 			// add passed child elements
-			if (children !== null) {
+			if (children !== undefined && children !== null{
 				if (typeof(children) === 'object') {
 					for (i = 0; i < children.length; i += 1) {
 						elem.append(children[i]);
 					}
-				} else if (typeof(children) !== 'undefined') {
+				} else {
 					elem.text(children.toString());
 				}
 			}
