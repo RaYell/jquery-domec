@@ -15,7 +15,7 @@
 (function ($) {
 	$.domecCore = {
 		// check if object is an array
-		isArray: function(object) {
+		isArray: function (object) {
 			return object !== null && typeof(object) === 'object' && 
 				typeof(object.length) === 'number';
 		},
@@ -48,7 +48,7 @@
 				if (children !== undefined && children !== null) {
 					// check if object is an array
 					if ($.domecCore.isArray(children)) {
-						for (i = 0; i < children.length; i+=1) {
+						for (i = 0; i < children.length; i += 1) {
 							elem.append(children[i]);
 						}
 					} else {
