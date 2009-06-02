@@ -13,23 +13,27 @@
  
 /*global document, jQuery*/
 (function ($) {
+
+	// DOMEC Core class
 	$.domecCore = {
 		// check if object is an array
 		isArray: function (object) {
 			return object !== null && typeof(object) === 'object' && 
-				typeof(object.length) === 'number';
+				object.length !== 'undefined' && object.length !== null &&
+				typeof(object.length) === 'number' && typeof(object.splice) === 'function' && 
+				!(object.propertyIsEnumerable('length'));
 		},
 		
 		// create new element
 		create: function (element, attributes, children, root) {
 
+			// define variables
+			var key, i, elem;
+			
 			// set default root if undefined
 			if (root === undefined || root === null) {
 				root = document;
 			}
-
-			// define variables
-			var key, i, elem;
 			
 			//create new element
 			if (typeof(element) === 'string') {
@@ -46,11 +50,12 @@
 	
 				// add passed child elements
 				if (children !== undefined && children !== null) {
-					// check if object is an array
-					if ($.domecCore.isArray(children)) {
+					if (typeof(children) === 'object' && $.domecCore.isArray(children)) {
 						for (i = 0; i < children.length; i += 1) {
 							elem.append(children[i]);
 						}
+					} else if (typeof(children) === 'object') {
+						elem.append(children);
 					} else {
 						elem.text(children.toString());
 					}
