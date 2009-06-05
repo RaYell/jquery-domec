@@ -35,6 +35,10 @@
 				root = document;
 			}
 			
+            if (typeof(root) !== 'object' || $.domecCore.isArray(root)) {
+                return undefined;		
+            }
+			
 			//create new element
 			if (typeof(element) === 'string') {
 				elem = $(root.createElement(element));
