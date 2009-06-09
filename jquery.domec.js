@@ -15,7 +15,7 @@
 (function ($) {
 
 	// DOMEC Core class
-	($.domecCore = function () {
+	($.DOMEC = function () {
 		var Validators, create;
 		
 		// validator methods
@@ -80,6 +80,7 @@
 			return elem;
 		};
 		
+		// DOMEC public members
 		return {
 			create	: create
 		};
@@ -87,7 +88,7 @@
 
  	// register jQuery extension
 	$.extend({
-		create: $.domecCore.create
+		create: $.DOMEC.create
 	});
 
 }(jQuery));
