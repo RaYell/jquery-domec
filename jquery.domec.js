@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 1.0.0
+ * jQuery DOMEC (DOM Elements Creator) 1.1.0
  * http://code.google.com/p/jquery-domec
  * http://plugins.jquery.com/project/DOMEC
  *
@@ -15,18 +15,29 @@
 (function ($) {
 
 	// DOMEC Core class
-	$.domecCore = {
-		// check if object is an array
-		isArray: function (object) {
-			return object !== null && typeof(object) === 'object' && 
-				object.length !== 'undefined' && object.length !== null &&
-				typeof(object.length) === 'number' && typeof(object.splice) === 'function' && 
-				!(object.propertyIsEnumerable('length'));
-		},
+	($.domecCore = function () {
+		var Validators, create;
+		
+		// validator methods
+		(Validators = function () {
+			var array;
+			
+			// check if object is an array
+			array = function (object) {
+				return object !== null && typeof(object) === 'object' && 
+					typeof(object.length) === 'number' && 
+					typeof(object.splice) === 'function' &&
+					!(object.propertyIsEnumerable('length'));
+			};
+			
+			// Validators public members
+			return {
+				array	: array
+			};
+		}());
 		
 		// create new element
-		create: function (element, attributes, children, root) {
-
+		create = function (element, attributes, children, root) {
 			// define variables
 			var key, i, elem;
 			
@@ -35,7 +46,7 @@
 				root = document;
 			}
 			
-            if (typeof(root) !== 'object' || $.domecCore.isArray(root)) {
+            if (typeof(root) !== 'object' || Validators.array(root)) {
                 return undefined;		
             }
 			
@@ -44,7 +55,7 @@
 				elem = $(root.createElement(element));
 
 				// add passed attributes
-				if (typeof(attributes) === 'object' && !($.domecCore.isArray(attributes))) {
+				if (typeof(attributes) === 'object' && !(Validators.array(attributes))) {
 					for (key in attributes) {
 						if (typeof(attributes[key]) === 'string') {
 							elem.attr(key, attributes[key]);
@@ -54,7 +65,7 @@
 	
 				// add passed child elements
 				if (children !== undefined && children !== null) {
-					if (typeof(children) === 'object' && $.domecCore.isArray(children)) {
+					if (typeof(children) === 'object' && Validators.array(children)) {
 						for (i = 0; i < children.length; i += 1) {
 							elem.append(children[i]);
 						}
@@ -67,12 +78,16 @@
 			}
 
 			return elem;
-		}
-	};
+		};
+		
+		return {
+			create	: create
+		};
+	}());
 
  	// register jQuery extension
 	$.extend({
 		create: $.domecCore.create
 	});
 
-})(jQuery);
+}(jQuery));
