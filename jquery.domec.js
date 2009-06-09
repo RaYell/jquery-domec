@@ -24,8 +24,8 @@
 			
 			// check if object is an array
 			array = function (object) {
-				return object !== null && typeof(object) === 'object' && 
-					typeof(object.length) === 'number' && 
+				return object !== null && typeof(object) === 'object' &&
+					typeof(object.length) === 'number' &&
 					typeof(object.splice) === 'function' &&
 					!(object.propertyIsEnumerable('length'));
 			};
@@ -47,13 +47,13 @@
 			}
 			
 			if (typeof(root) !== 'object' || Validators.array(root)) {
-				return undefined;		
+				return undefined;
 			}
 			
 			//create new element
 			if (typeof(element) === 'string') {
 				elem = $(root.createElement(element));
-
+				
 				// add passed attributes
 				if (typeof(attributes) === 'object' && !(Validators.array(attributes))) {
 					for (key in attributes) {
@@ -62,7 +62,7 @@
 						}
 					}
 				}
-	
+				
 				// add passed child elements
 				if (children !== undefined && children !== null) {
 					if (typeof(children) === 'object' && Validators.array(children)) {
