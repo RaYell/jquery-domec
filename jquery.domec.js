@@ -80,6 +80,7 @@
 			return elem;
 		};
 		
+		// DOMEC public members
 		return {
 			create	: create
 		};
