@@ -16,25 +16,23 @@
 
 	// DOMEC Core class
 	($.domecCore = function () {
-		var Validators, create;
+		var typeOf, create;
 		
-		// validator methods
-		(Validators = function () {
-			var array;
-			
-			// check if object is an array
-			array = function (object) {
-				return object !== null && typeof(object) === 'object' &&
-					typeof(object.length) === 'number' &&
-					typeof(object.splice) === 'function' &&
-					!(object.propertyIsEnumerable('length'));
-			};
-			
-			// Validators public members
-			return {
-				array	: array
-			};
-		}());
+		// returns type of value
+		typeOf = function (value) {
+			var type = typeof value;
+			if (type === 'object') {
+				if (value === null) {
+					type = 'null';
+				} else if (typeof value.length === 'number' && 
+					typeof value.splice === 'function' &&
+					!(value.propertyIsEnumerable('length'))) {
+					type = 'array';
+				}
+				
+			}
+			return type;
+		};
 		
 		// create new element
 		create = function (element, attributes, children, root) {
@@ -46,18 +44,18 @@
 				root = document;
 			}
 			
-			if (typeof(root) !== 'object' || Validators.array(root)) {
+			if (typeOf(root) !== 'object') {
 				return undefined;
 			}
 			
 			//create new element
-			if (typeof(element) === 'string') {
+			if (typeOf(element) === 'string') {
 				elem = $(root.createElement(element));
 				
 				// add passed attributes
-				if (typeof(attributes) === 'object' && !(Validators.array(attributes))) {
+				if (typeOf(attributes) === 'object') {
 					for (key in attributes) {
-						if (typeof(attributes[key]) === 'string') {
+						if (typeOf(attributes[key]) === 'string') {
 							elem.attr(key, attributes[key]);
 						}
 					}
@@ -65,11 +63,11 @@
 				
 				// add passed child elements
 				if (children !== undefined && children !== null) {
-					if (typeof(children) === 'object' && Validators.array(children)) {
+					if (typeOf(children) === 'array') {
 						for (i = 0; i < children.length; i += 1) {
 							elem.append(children[i]);
 						}
-					} else if (typeof(children) === 'object') {
+					} else if (typeOf(children) === 'object') {
 						elem.append(children);
 					} else {
 						elem.text(children.toString());
