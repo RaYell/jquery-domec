@@ -7,7 +7,7 @@
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
  * Documentation	:	http://code.google.com/p/jquery-domec/wiki/Documentation
- * Changelog:		:	http://code.google.com/p/jquery-domec/wiki/Changelog
+ * Changelog		:	http://code.google.com/p/jquery-domec/wiki/Changelog
  */
  
 /*global document, jQuery*/
