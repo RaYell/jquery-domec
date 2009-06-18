@@ -15,7 +15,8 @@
 
 	// DOMEC Core class
 	($.domecCore = function () {
-		var typeOf, create;
+		// variables declaration
+		var typeOf, Element;
 		
 		// returns type of value
 		typeOf = function (value) {
@@ -33,53 +34,61 @@
 			return type;
 		};
 		
-		// create new element
-		create = function (element, attributes, children, root) {
-			// define variables
-			var key, i, elem;
-			
-			// set default root if undefined
-			if (root === undefined || root === null) {
-				root = document;
-			}
-			
-			if (typeOf(root) !== 'object') {
-				return undefined;
-			}
-			
-			//create new element
-			if (typeOf(element) === 'string') {
-				elem = $(root.createElement(element));
-				
-				// add passed attributes
-				if (typeOf(attributes) === 'object') {
-					for (key in attributes) {
-						if (typeOf(attributes[key]) === 'string') {
-							elem.attr(key, attributes[key]);
+		// DOM element
+		(Element = function () {
+			return {
+				// create element
+				create: function (name, root) {
+					// set default root if undefined
+					if (root === undefined || root === null) {
+						root = document;
+					}
+					
+					if (typeOf(root) === 'object' && typeOf(name) === 'string') {
+						return $(root.createElement(name));
+					}
+					
+					return undefined;
+				},
+				// add attributes
+				addAttributes: function (elem, attributes) {
+					if (typeOf(attributes) === 'object') {
+						for (var key in attributes) {
+							if (typeOf(attributes[key]) === 'string') {
+								elem.attr(key, attributes[key]);
+							}
+						}
+					}
+				},
+				// add child elements
+				addChildren: function (elem, children) {
+					if (children !== undefined && children !== null) {
+						if (typeOf(children) === 'array') {
+							for (var i = 0; i < children.length; i += 1) {
+								elem.append(children[i]);
+							}
+						} else if (typeOf(children) === 'object') {
+							elem.append(children);
+						} else {
+							elem.text(children.toString());
 						}
 					}
 				}
-				
-				// add passed child elements
-				if (children !== undefined && children !== null) {
-					if (typeOf(children) === 'array') {
-						for (i = 0; i < children.length; i += 1) {
-							elem.append(children[i]);
-						}
-					} else if (typeOf(children) === 'object') {
-						elem.append(children);
-					} else {
-						elem.text(children.toString());
-					}
-				}
-			}
-
-			return elem;
-		};
+			};
+		}());
 		
 		// DOMEC public members
 		return {
-			create	: create
+			create: function (name, attributes, children, root) {
+				var elem = Element.create(name, root);
+				
+				if (elem !== undefined) {
+					Element.addAttributes(elem, attributes);
+					Element.addChildren(elem, children);
+				}
+				
+				return elem;
+			}
 		};
 	}());
 
