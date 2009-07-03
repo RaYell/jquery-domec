@@ -11,6 +11,8 @@
  */
  
 /*global document, jQuery*/
+/*members addAttributes, addChildren, append, attr, create, createElement, domecCore, extend, 
+length, propertyIsEnumerable, splice, text, toString*/
 (function ($) {
 
 	// DOMEC Core class

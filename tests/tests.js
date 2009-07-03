@@ -1,4 +1,6 @@
 /*global $,document,module,test,ok,same*/
+/*members attr, children, contentDocument, create, get, id, insertAfter, length, name, one, ready, 
+remove, tagName, text, two*/
 $(document).ready(function () {
 	// hack for html validator (ol cannot be empty)
 	$('li').remove();
