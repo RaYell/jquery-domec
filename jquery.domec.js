@@ -11,12 +11,12 @@
  */
  
 /*global document, jQuery*/
-/*members addAttributes, addChildren, append, attr, create, createElement, domecCore, extend, 
+/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend, 
 length, propertyIsEnumerable, splice, text, toString*/
 (function ($) {
 
 	// DOMEC Core class
-	($.domecCore = function () {
+	$.DOMEC = (function () {
 		// variables declaration
 		var typeOf, Element;
 		
@@ -37,7 +37,7 @@ length, propertyIsEnumerable, splice, text, toString*/
 		};
 		
 		// DOM element
-		(Element = function () {
+		Element = (function () {
 			return {
 				// create element
 				create: function (name, root) {
@@ -96,7 +96,7 @@ length, propertyIsEnumerable, splice, text, toString*/
 
  	// register jQuery extension
 	$.extend({
-		create: $.domecCore.create
+		create: $.DOMEC.create
 	});
 
 }(jQuery));
