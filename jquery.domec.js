@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 1.0.1
+ * jQuery DOMEC (DOM Elements Creator) 1.1.0
  * http://code.google.com/p/jquery-domec
  *
  * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
@@ -9,9 +9,9 @@
  * Documentation	:	http://code.google.com/p/jquery-domec/wiki/Documentation
  * Changelog		:	http://code.google.com/p/jquery-domec/wiki/Changelog
  */
- 
+
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend, 
+/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend,
 length, propertyIsEnumerable, splice, text, toString*/
 (function ($) {
 
@@ -19,23 +19,23 @@ length, propertyIsEnumerable, splice, text, toString*/
 	$.DOMEC = (function () {
 		// variables declaration
 		var typeOf, Element;
-		
+
 		// returns type of value
 		typeOf = function (value) {
 			var type = typeof value;
 			if (type === 'object') {
 				if (value === null) {
 					type = 'null';
-				} else if (typeof value.length === 'number' && 
+				} else if (typeof value.length === 'number' &&
 					typeof value.splice === 'function' &&
 					!(value.propertyIsEnumerable('length'))) {
 					type = 'array';
 				}
-				
+
 			}
 			return type;
 		};
-		
+
 		// DOM element
 		Element = (function () {
 			return {
@@ -45,18 +45,19 @@ length, propertyIsEnumerable, splice, text, toString*/
 					if (root === undefined || root === null) {
 						root = document;
 					}
-					
+
 					if (typeOf(root) === 'object' && typeOf(name) === 'string') {
 						return $(root.createElement(name));
 					}
-					
+
 					return undefined;
 				},
 				// add attributes
 				addAttributes: function (elem, attributes) {
 					if (typeOf(attributes) === 'object') {
 						for (var key in attributes) {
-							if (typeOf(attributes[key]) === 'string') {
+							if (typeOf(attributes[key]) === 'string' || 
+								typeOf(attributes[key]) === 'number') {
 								elem.attr(key, attributes[key]);
 							}
 						}
@@ -78,17 +79,17 @@ length, propertyIsEnumerable, splice, text, toString*/
 				}
 			};
 		}());
-		
+
 		// DOMEC public members
 		return {
 			create: function (name, attributes, children, root) {
 				var elem = Element.create(name, root);
-				
+
 				if (elem !== undefined) {
 					Element.addAttributes(elem, attributes);
 					Element.addChildren(elem, children);
 				}
-				
+
 				return elem;
 			}
 		};
