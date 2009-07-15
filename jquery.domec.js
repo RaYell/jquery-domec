@@ -10,6 +10,8 @@
  * Changelog		:	http://code.google.com/p/jquery-domec/wiki/Changelog
  */
 
+/*jslint bitwise: true, eqeqeq: true, immed: true, newcap: true, nomen: true, onevar: true, 
+plusplus: true, regexp: true, undef: true, white: true, indent: 4 */
 /*global document, jQuery*/
 /*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend,
 length, propertyIsEnumerable, splice, text, toString*/
