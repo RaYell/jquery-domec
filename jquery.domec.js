@@ -13,16 +13,14 @@
 /*jslint bitwise: true, eqeqeq: true, immed: true, newcap: true, nomen: true, onevar: true, 
 plusplus: true, regexp: true, undef: true, white: true, indent: 4 */
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend,
-length, propertyIsEnumerable, splice, text, toString*/
+/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement, extend, 
+hasOwnProperty, indexOf, length, propertyIsEnumerable, prototype, registerIndexOf, splice, text, 
+toString*/
 (function ($) {
 
-	// DOMEC Core class
 	$.DOMEC = (function () {
-		// variables declaration
-		var typeOf, Element;
+		var typeOf, Element, Hacks;
 
-		// returns type of value
 		typeOf = function (value) {
 			var type = typeof value;
 			if (type === 'object') {
@@ -37,13 +35,27 @@ length, propertyIsEnumerable, splice, text, toString*/
 			}
 			return type;
 		};
+		
+		Hacks = (function () {
+			return {
+				registerIndexOf: function () {
+					if (Array.prototype.indexOf === undefined) {
+						Array.prototype.indexOf = function (object) {
+							for (var i = 0; i < this.length; i += 1) {
+								if (this[i] === object) {
+									return i;
+								}
+							}
+							return -1;
+						};
+					}
+				}
+			};
+		}());
 
-		// DOM element
 		Element = (function () {
 			return {
-				// create element
 				create: function (name, root) {
-					// set default root if undefined
 					if (root === undefined || root === null) {
 						root = document;
 					}
@@ -54,25 +66,30 @@ length, propertyIsEnumerable, splice, text, toString*/
 
 					return undefined;
 				},
-				// add attributes
+				
 				addAttributes: function (elem, attributes) {
+					var key, item;
 					if (typeOf(attributes) === 'object') {
-						for (var key in attributes) {
-							if (typeOf(attributes[key]) === 'string' || 
-								typeOf(attributes[key]) === 'number') {
-								elem.attr(key, attributes[key]);
+						for (key in attributes) {
+							if (attributes.hasOwnProperty(key)) {
+								item = attributes[key];
+								if (['string', 'number'].indexOf(typeOf(item)) !== -1) {
+									elem.attr(key, item);
+								}
 							}
 						}
 					}
 				},
-				// add child elements
+				
 				addChildren: function (elem, children) {
 					if (children !== undefined && children !== null) {
-						if (typeOf(children) === 'array') {
-							for (var i = 0; i < children.length; i += 1) {
+						var type = typeOf(children), length, i;
+						if (type === 'array') {
+							length = children.length;
+							for (i = 0; i < length; i += 1) {
 								elem.append(children[i]);
 							}
-						} else if (typeOf(children) === 'object') {
+						} else if (type === 'object') {
 							elem.append(children);
 						} else {
 							elem.text(children.toString());
@@ -82,9 +99,10 @@ length, propertyIsEnumerable, splice, text, toString*/
 			};
 		}());
 
-		// DOMEC public members
 		return {
 			create: function (name, attributes, children, root) {
+				Hacks.registerIndexOf();
+				
 				var elem = Element.create(name, root);
 
 				if (elem !== undefined) {
@@ -97,8 +115,7 @@ length, propertyIsEnumerable, splice, text, toString*/
 		};
 	}());
 
- 	// register jQuery extension
-	$.extend({
+ 	$.extend({
 		create: $.DOMEC.create
 	});
 
