@@ -1,8 +1,9 @@
-/*jslint bitwise: true, eqeqeq: true, immed: true, newcap: true, nomen: true, onevar: true, 
-plusplus: true, regexp: true, undef: true, white: true, indent: 4*/
+/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
+bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4*/
 /*global $, QUnit, document, expect, fireunit, ok, same, test*/
 /*members attr, children, contentDocument, create, done, get, id, insertAfter, length, log, name, 
 ok, one, ready, remove, tagName, testDone, text, two*/
+"use strict";
 $(document).ready(function () {
 	// hack for html validator (ol cannot be empty)
 	$('li').remove();
