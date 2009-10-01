@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 1.0.1
+ * jQuery DOMEC (DOM Elements Creator) 1.0.2
  * http://code.google.com/p/jquery-domec
  *
  * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
