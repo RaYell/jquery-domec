@@ -2,9 +2,9 @@
 bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4*/
 /*global $, QUnit, document, expect, fireunit, ok, same, test*/
 /*members attr, children, contentDocument, create, done, get, id, insertAfter, length, log, name, 
-ok, one, ready, remove, tagName, testDone, text, two*/
-"use strict";
-$(document).ready(function () {
+ok, one, remove, tagName, testDone, text, two*/
+'use strict';
+$(function () {
 	// hack for html validator (ol cannot be empty)
 	$('li').remove();
 	

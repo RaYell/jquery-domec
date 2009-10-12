@@ -15,7 +15,7 @@ bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50
 /*global document, jQuery*/
 /*members DOMEC, addAttributes, addChildren, append, attr, create, createElement , extend, isArray,
 length, propertyIsEnumerable, splice, text, toString*/
-"use strict";
+'use strict';
 (function ($) {
 
 	// DOMEC Core class
