@@ -38,6 +38,7 @@ isArray, length, text, toString*/
 
                     return undefined;
                 },
+                
                 // add attributes
                 addAttributes: function (elem, attr) {
                     if (typeof attr === 'object' && attr !== null && !$.isArray(attr)) {
@@ -48,6 +49,7 @@ isArray, length, text, toString*/
                         });
                     }
                 },
+                
                 // add child elements
                 addChildren: function (elem, children) {
                     if (children !== undefined && children !== null) {
