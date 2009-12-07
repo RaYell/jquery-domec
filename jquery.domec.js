@@ -82,7 +82,7 @@ isArray, length, text, toString*/
         };
     }());
 
-     // register jQuery extension
+    // register jQuery extension
     $.extend({
         create: $.DOMEC.create
     });
