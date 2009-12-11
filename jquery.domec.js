@@ -54,10 +54,10 @@ isArray, length, text, toString*/
                 addChildren: function (elem, children) {
                     if (children !== undefined && children !== null) {
                         if ($.isArray(children)) {
-                            $.each(children, function () {
-                                elem.append(this);
+                            $.each(children, function (i, value) {
+                                elem.append(value);
                             });
-                        } else if (typeof children === 'object') {
+                        } else if (children instanceof jQuery) {
                             elem.append(children);
                         } else {
                             elem.text(children.toString());
