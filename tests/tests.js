@@ -1,10 +1,12 @@
 /*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
 bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4*/
 /*global $, QUnit, document, expect, fireunit, ok, same, test*/
-/*members attr, children, contentDocument, create, done, get, id, insertAfter, length, log, name, 
-ok, one, remove, tagName, testDone, text, two*/
+/*members attr, children, click, contentDocument, create, done, get, id, insertAfter, length, log, 
+name, ok, one, remove, tagName, testDone, trigger, text, two*/
 'use strict';
 $(function () {
+    var testVal;
+    
     // hack for html validator (ol cannot be empty)
     $('li').remove();
     
@@ -60,56 +62,70 @@ $(function () {
         ok(elem.attr('id') === '', 'Set attribute (function)');
     });
     
+    test('Event handlers', function () {
+        expect(1);
+        
+        var elem = $.create('div', null, {
+            click: function () {
+                testVal = 123;
+            }
+        });
+        
+        elem.trigger('click');
+        
+        ok(testVal === 123, 'Create element with click event handler');
+    });
+    
     test('Children', function () {
         expect(11);
         
-        var elem = $.create('div', null, 'testText');
+        var elem = $.create('div', null, null, 'testText');
         
         same(elem.text(), 'testText', 'Create text node');
-        elem = $.create('div', null, $.create('p'));
+        elem = $.create('div', null, null, $.create('p'));
         ok(elem.children().get(0).tagName === 'P', 'Create tree with single child (object)');
-        elem = $.create('div', null, [$.create('p')]);
+        elem = $.create('div', null, null, [$.create('p')]);
         ok(elem.children().get(0).tagName === 'P', 'Create tree with single child (array)');
-        elem = $.create('div', null, [$.create('p'), $.create('span')]);
+        elem = $.create('div', null, null, [$.create('p'), $.create('span')]);
         ok(elem.children().get(0).tagName === 'P', 
             'Create tree with several children. Get first child');
         ok(elem.children().get(1).tagName === 'SPAN', 
             'Create tree with several children. Get second child');
-        elem = $.create('div', null, null);
+        elem = $.create('div', null, null, null);
         ok(elem.children().length === 0, 'Create element with child nodes (null)');
-        elem = $.create('div', null, {one: $.create('p'), two: $.create('span')});
+        elem = $.create('div', null, null, {one: $.create('p'), two: $.create('span')});
         ok(elem.children().length === 0, 'Create element with child nodes (object)');
-        elem = $.create('div', null, 1);
+        elem = $.create('div', null, null, 1);
         ok(elem.children().length === 0, 'Create element with child nodes (int)');
-        elem = $.create('div', null, 1);
+        elem = $.create('div', null, null, 1);
         ok(elem.children().length === 0, 'Create element with child nodes (float)');
-        elem = $.create('div', null, true);
+        elem = $.create('div', null, null, true);
         ok(elem.children().length === 0, 'Create element with child nodes (boolean)');
-        elem = $.create('div', null, $);
+        elem = $.create('div', null, null, $);
         ok(elem.children().length === 0, 'Create element with child nodes (function)');
     });
     
     test('Root element', function () {
         expect(10);
         
-        var elem = $.create('div', null, null, null);
+        var elem = $.create('div', null, null, null, null);
         
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (null)');
-        elem = $.create('div', null, null, undefined);
+        elem = $.create('div', null, null, null, undefined);
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (undefined)');
-        elem = $.create('div', null, null, document);
+        elem = $.create('div', null, null, null, document);
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (object)');
-        elem = $.create('div', null, null, 1);
+        elem = $.create('div', null, null, null, 1);
         ok(elem === undefined, 'Create element with given root (int)');
-        elem = $.create('div', null, null, 1.2);
+        elem = $.create('div', null, null, null, 1.2);
         ok(elem === undefined, 'Create element with given root (float)');
-        elem = $.create('div', null, null, 'document');
+        elem = $.create('div', null, null, null, 'document');
         ok(elem === undefined, 'Create element with given root (string)');
-        elem = $.create('div', null, null, true);
+        elem = $.create('div', null, null, null, true);
         ok(elem === undefined, 'Create element with given root (boolean)');
-        elem = $.create('div', null, null, []);
+        elem = $.create('div', null, null, null, []);
         ok(elem === undefined, 'Create element with given root (array)');
-        elem = $.create('div', null, null, $);
+        elem = $.create('div', null, null, null, $);
         ok(elem === undefined, 'Create element with given root (function)');
         
         $.create('iframe', {id: 'myIframe'}).insertAfter('#main');

@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 1.0.2
+ * jQuery DOMEC (DOM Elements Creator) 1.1.0
  * http://code.google.com/p/jquery-domec
  *
  * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
@@ -13,8 +13,8 @@
 /*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
 bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4 */
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, append, attr, create, createElement, each, extend, 
-isArray, length, text, toString*/
+/*members DOMEC, addAttributes, addChildren, addEventHandlers, addLiveEventHandlers, append, attr, 
+bind, create, createElement, each, extend, isArray, length, live, text, toString*/
 'use strict';
 (function ($) {
 
@@ -50,6 +50,17 @@ isArray, length, text, toString*/
                     }
                 },
                 
+                // add event handlers
+                addEventHandlers: function (elem, events) {
+                    if (typeof events === 'object' && events !== null && !$.isArray(events)) {
+                        $.each(events, function (key, val) {
+                            if (typeof key === 'string' && typeof val === 'function') {
+                                elem.bind(key, val);
+                            }
+                        });
+                    }
+                },
+                
                 // add child elements
                 addChildren: function (elem, children) {
                     if (children !== undefined && children !== null) {
@@ -69,11 +80,12 @@ isArray, length, text, toString*/
 
         // DOMEC public members
         return {
-            create: function (name, attributes, children, root) {
+            create: function (name, attributes, events, children, root) {
                 var elem = Element.create(name, root);
 
                 if (elem !== undefined) {
                     Element.addAttributes(elem, attributes);
+                    Element.addEventHandlers(elem, events);
                     Element.addChildren(elem, children);
                 }
 
