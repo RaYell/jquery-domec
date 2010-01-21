@@ -2,19 +2,22 @@
  * jQuery DOMEC (DOM Elements Creator) 1.1.0
  * http://code.google.com/p/jquery-domec
  *
- * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://lukasz.rajchel.pl)
+ * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://rajchel.pl)
  * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
  * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
  *
- * Documentation    :    http://code.google.com/p/jquery-domec/wiki/Documentation
- * Changelog        :    http://code.google.com/p/jquery-domec/wiki/Changelog
+ * Documentation :  http://code.google.com/p/jquery-domec/wiki/Documentation
+ * Changelog     :  http://code.google.com/p/jquery-domec/wiki/Changelog
+ *
+ * Contributors  :  Lukasz Rajchel
  */
 
 /*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
 bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4 */
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, addEventHandlers, addLiveEventHandlers, append, attr, 
-bind, create, createElement, each, extend, isArray, length, live, text, toString*/
+/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, 
+children, create, createElement, each, events, extend, hasOwnProperty, isArray, root, text, 
+toString*/
 'use strict';
 (function ($) {
 
@@ -80,13 +83,30 @@ bind, create, createElement, each, extend, isArray, length, live, text, toString
 
         // DOMEC public members
         return {
-            create: function (name, attributes, events, children, root) {
-                var elem = Element.create(name, root);
+            create: function (name, options) {
+            
+                var elem;
+                
+                if (typeof options === 'object' && options !== null && !$.isArray(options) &&
+                    options.hasOwnProperty('root')) {
+                    elem = Element.create(name, options.root);
+                } else {
+                    elem = Element.create(name);
+                }
 
-                if (elem !== undefined) {
-                    Element.addAttributes(elem, attributes);
-                    Element.addEventHandlers(elem, events);
-                    Element.addChildren(elem, children);
+                if (elem !== undefined && typeof options === 'object' && options !== null && 
+                    !$.isArray(options)) {
+                    if (options.hasOwnProperty('attributes')) {
+                        Element.addAttributes(elem, options.attributes);
+                    }
+                    
+                    if (options.hasOwnProperty('events')) {
+                        Element.addEventHandlers(elem, options.events);
+                    }
+                    
+                    if (options.hasOwnProperty('children')) {
+                        Element.addChildren(elem, options.children);
+                    }
                 }
 
                 return elem;

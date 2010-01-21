@@ -40,36 +40,36 @@ $(function () {
     test('Attributes', function () {
         expect(10);
         
-        var elem = $.create('div', {id: 'testId'});
+        var elem = $.create('div', {attributes: {id: 'testId'}});
         
         same(elem.attr('id'), 'testId', 'Set single attribute');
-        elem = $.create('div', {id: 'testId', name: 'testName'});
+        elem = $.create('div', {attributes: {id: 'testId', name: 'testName'}});
         same(elem.attr('id'), 'testId', 'Set multiple attributes. Check id');
         same(elem.attr('name'), 'testName', 'Set multiple attributes. Check name');
-        elem = $.create('div', null);
+        elem = $.create('div', {attributes: null});
         ok(elem.attr('id') === '', 'Set attribute (null)');
-        elem = $.create('div', ['id: myId']);
+        elem = $.create('div', {attributes: ['id: myId']});
         ok(elem.attr('id') === '', 'Set attribute (array)');
-        elem = $.create('div', 'id: myId');
+        elem = $.create('div', {attributes: 'id: myId'});
         ok(elem.attr('id') === '', 'Set attribute (string)');
-        elem = $.create('div', 1);
+        elem = $.create('div', {attributes: 1});
         ok(elem.attr('id') === '', 'Set attribute (int)');
-        elem = $.create('div', 1.2);
+        elem = $.create('div', {attributes: 1.2});
         ok(elem.attr('id') === '', 'Set attribute (float)');
-        elem = $.create('div', true);
+        elem = $.create('div', {attributes: true});
         ok(elem.attr('id') === '', 'Set attribute (boolean)');
-        elem = $.create('div', $);
+        elem = $.create('div', {attributes: $});
         ok(elem.attr('id') === '', 'Set attribute (function)');
     });
     
     test('Event handlers', function () {
         expect(1);
         
-        var elem = $.create('div', null, {
+        var elem = $.create('div', {events: {
             click: function () {
                 testVal = 123;
             }
-        });
+        }});
         
         elem.trigger('click');
         
@@ -79,58 +79,59 @@ $(function () {
     test('Children', function () {
         expect(11);
         
-        var elem = $.create('div', null, null, 'testText');
+        var elem = $.create('div', {children: 'testText'});
         
         same(elem.text(), 'testText', 'Create text node');
-        elem = $.create('div', null, null, $.create('p'));
+        elem = $.create('div', {children: $.create('p')});
         ok(elem.children().get(0).tagName === 'P', 'Create tree with single child (object)');
-        elem = $.create('div', null, null, [$.create('p')]);
+        elem = $.create('div', {children: [$.create('p')]});
         ok(elem.children().get(0).tagName === 'P', 'Create tree with single child (array)');
-        elem = $.create('div', null, null, [$.create('p'), $.create('span')]);
+        elem = $.create('div', {children: [$.create('p'), $.create('span')]});
         ok(elem.children().get(0).tagName === 'P', 
             'Create tree with several children. Get first child');
         ok(elem.children().get(1).tagName === 'SPAN', 
             'Create tree with several children. Get second child');
-        elem = $.create('div', null, null, null);
+        elem = $.create('div', {children: null});
         ok(elem.children().length === 0, 'Create element with child nodes (null)');
-        elem = $.create('div', null, null, {one: $.create('p'), two: $.create('span')});
+        elem = $.create('div', {children: {one: $.create('p'), two: $.create('span')}});
         ok(elem.children().length === 0, 'Create element with child nodes (object)');
-        elem = $.create('div', null, null, 1);
+        elem = $.create('div', {children: 1});
         ok(elem.children().length === 0, 'Create element with child nodes (int)');
-        elem = $.create('div', null, null, 1);
+        elem = $.create('div', {children: 1.2});
         ok(elem.children().length === 0, 'Create element with child nodes (float)');
-        elem = $.create('div', null, null, true);
+        elem = $.create('div', {children: true});
         ok(elem.children().length === 0, 'Create element with child nodes (boolean)');
-        elem = $.create('div', null, null, $);
+        elem = $.create('div', {children: $});
         ok(elem.children().length === 0, 'Create element with child nodes (function)');
     });
     
     test('Root element', function () {
         expect(10);
         
-        var elem = $.create('div', null, null, null, null);
+        var elem = $.create('div', {root: null});
         
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (null)');
-        elem = $.create('div', null, null, null, undefined);
+        elem = $.create('div', {root: undefined});
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (undefined)');
-        elem = $.create('div', null, null, null, document);
+        elem = $.create('div', {root: document});
         ok(elem.get(0).tagName === 'DIV', 'Create element with given root (object)');
-        elem = $.create('div', null, null, null, 1);
+        elem = $.create('div', {root: 1});
         ok(elem === undefined, 'Create element with given root (int)');
-        elem = $.create('div', null, null, null, 1.2);
+        elem = $.create('div', {root: 1.2});
         ok(elem === undefined, 'Create element with given root (float)');
-        elem = $.create('div', null, null, null, 'document');
+        elem = $.create('div', {root: 'document'});
         ok(elem === undefined, 'Create element with given root (string)');
-        elem = $.create('div', null, null, null, true);
+        elem = $.create('div', {root: true});
         ok(elem === undefined, 'Create element with given root (boolean)');
-        elem = $.create('div', null, null, null, []);
+        elem = $.create('div', {root: []});
         ok(elem === undefined, 'Create element with given root (array)');
-        elem = $.create('div', null, null, null, $);
+        elem = $.create('div', {root: $});
         ok(elem === undefined, 'Create element with given root (function)');
         
-        $.create('iframe', {id: 'myIframe'}).insertAfter('#main');
-        elem = $.create('div', null, null, $('iframe').get(0).contentDocument);
+        $.create('iframe', {attributes: {id: 'myIframe'}}).insertAfter('#main');
+        elem = $.create('div', {root: $('iframe').get(0).contentDocument});
         ok(elem.get(0).tagName === 'DIV', 'Create element in iFrame');
+        
         $('iframe#myIframe').remove();
     });
 });
