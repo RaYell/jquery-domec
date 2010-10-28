@@ -1,8 +1,8 @@
 /*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
 bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4*/
 /*global $, QUnit, document, expect, fireunit, ok, same, test*/
-/*members attr, children, click, contentDocument, create, done, get, id, insertAfter, length, log, 
-name, ok, one, remove, tagName, testDone, trigger, text, two*/
+/*members attr, attributes, children, click, contentDocument, create, done, events, get, id, 
+insertAfter, length, log, name, ok, one, remove, root, tagName, testDone, trigger, text, two*/
 'use strict';
 $(function () {
     var testVal;
