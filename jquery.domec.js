@@ -12,14 +12,13 @@
  * Contributors  :  Lukasz Rajchel
  */
 
-/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, 
-bitwise: true, regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4 */
+/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, 
+regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4, maxlen: 120*/
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, 
-children, create, createElement, each, events, extend, hasOwnProperty, isArray, root, text, 
-toString*/
-'use strict';
+/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create, 
+createElement, each, events, extend, hasOwnProperty, isArray, root, text, toString*/
 (function ($) {
+    'use strict';
 
     // DOMEC Core class
     $.DOMEC = (function () {
@@ -34,8 +33,7 @@ toString*/
                         root = document;
                     }
 
-                    if (typeof root === 'object' && !$.isArray(root) && 
-                        typeof name === 'string') {
+                    if (typeof root === 'object' && !$.isArray(root) && typeof name === 'string') {
                         return $(root.createElement(name));
                     }
 
@@ -68,8 +66,8 @@ toString*/
                 addChildren: function (elem, children) {
                     if (children !== undefined && children !== null) {
                         if ($.isArray(children)) {
-                            $.each(children, function (i, value) {
-                                elem.append(value);
+                            $.each(children, function () {
+                                elem.append(this);
                             });
                         } else if (children instanceof jQuery) {
                             elem.append(children);
@@ -94,8 +92,7 @@ toString*/
                     elem = Element.create(name);
                 }
 
-                if (elem !== undefined && typeof options === 'object' && options !== null && 
-                    !$.isArray(options)) {
+                if (elem !== undefined && typeof options === 'object' && options !== null && !$.isArray(options)) {
                     if (options.hasOwnProperty('attributes')) {
                         Element.addAttributes(elem, options.attributes);
                     }
