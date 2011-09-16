@@ -126,10 +126,7 @@ $(function () {
         elem = $.create('div', {root: $});
         equals(elem, undefined, 'Create element with given root (function)');
         
-        $.create('iframe', {attributes: {id: 'myIframe'}}).insertAfter('#qunit-fixture');
         elem = $.create('div', {root: $('iframe').get(0).contentDocument});
         equals(elem.get(0).tagName, 'DIV', 'Create element in iFrame');
-        
-        $('iframe#myIframe').remove();
     });
 });
