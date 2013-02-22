@@ -12,11 +12,10 @@
  * Contributors  :  Lukasz Rajchel
  */
 
-/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, 
-regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4, maxlen: 120*/
+/*jslint indent: 4, maxlen: 120 */
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create, 
-createElement, each, events, extend, hasOwnProperty, isArray, root, text, toString*/
+/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create,
+createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, root, text, toString*/
 (function ($) {
     'use strict';
 
@@ -39,10 +38,10 @@ createElement, each, events, extend, hasOwnProperty, isArray, root, text, toStri
 
                     return undefined;
                 },
-                
+
                 // add attributes
                 addAttributes: function (elem, attr) {
-                    if (typeof attr === 'object' && attr !== null && !$.isArray(attr)) {
+                    if ($.isPlainObject(attr)) {
                         $.each(attr, function (key, val) {
                             if (typeof val === 'string' || typeof val === 'number') {
                                 elem.attr(key, val);
@@ -50,10 +49,10 @@ createElement, each, events, extend, hasOwnProperty, isArray, root, text, toStri
                         });
                     }
                 },
-                
+
                 // add event handlers
                 addEventHandlers: function (elem, events) {
-                    if (typeof events === 'object' && events !== null && !$.isArray(events)) {
+                    if ($.isPlainObject(events)) {
                         $.each(events, function (key, val) {
                             if (typeof key === 'string' && typeof val === 'function') {
                                 elem.bind(key, val);
@@ -61,7 +60,7 @@ createElement, each, events, extend, hasOwnProperty, isArray, root, text, toStri
                         });
                     }
                 },
-                
+
                 // add child elements
                 addChildren: function (elem, children) {
                     if (children !== undefined && children !== null) {
@@ -82,25 +81,22 @@ createElement, each, events, extend, hasOwnProperty, isArray, root, text, toStri
         // DOMEC public members
         return {
             create: function (name, options) {
-            
                 var elem;
-                
-                if (typeof options === 'object' && options !== null && !$.isArray(options) &&
-                    options.hasOwnProperty('root')) {
+                if ($.isPlainObject(options) && options.hasOwnProperty('root')) {
                     elem = Element.create(name, options.root);
                 } else {
                     elem = Element.create(name);
                 }
 
-                if (elem !== undefined && typeof options === 'object' && options !== null && !$.isArray(options)) {
+                if (elem !== undefined && $.isPlainObject(options)) {
                     if (options.hasOwnProperty('attributes')) {
                         Element.addAttributes(elem, options.attributes);
                     }
-                    
+
                     if (options.hasOwnProperty('events')) {
                         Element.addEventHandlers(elem, options.events);
                     }
-                    
+
                     if (options.hasOwnProperty('children')) {
                         Element.addChildren(elem, options.children);
                     }
