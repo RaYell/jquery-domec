@@ -1,51 +1,46 @@
-/*jslint white: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, 
-regexp: true, strict: true, newcap: true, immed: true, maxerr: 50, indent: 4, maxlen: 120*/
-/*global $, document, equals, expect, ok, test*/
-/*members attr, attributes, children, click, contentDocument, create, done, events, get, id, insertAfter, length, log, 
+/*jslint indent: 4, maxlen: 120 */
+/*global $, document, equal, expect, ok, test*/
+/*members attr, attributes, children, click, contentDocument, create, done, events, get, id, insertAfter, length, log,
 name, one, remove, root, tagName, testDone, trigger, text, two*/
 
 $(function () {
 	'use strict';
     var testVal, isEmptyOrUndefined;
-    
+
     // hack for html validator (ol cannot be empty)
     $('li').remove();
-    
+
     isEmptyOrUndefined = function (value) {
 		return value === '' || value === undefined;
 	};
-    
+
     test('Basic element creation', function () {
         expect(8);
-        
         var elem = $.create('div');
-        
-        equals(elem.get(0).tagName, 'DIV', 'Create element (string)');
+        equal(elem.get(0).tagName, 'DIV', 'Create element (string)');
         elem = $.create(null);
-        equals(elem, undefined, 'Create element (null)');
+        equal(elem, undefined, 'Create element (null)');
         elem = $.create(undefined);
-        equals(elem, undefined, 'Create element (undefined)');
+        equal(elem, undefined, 'Create element (undefined)');
         elem = $.create({one: 'div'});
-        equals(elem, undefined, 'Create element (object)');
+        equal(elem, undefined, 'Create element (object)');
         elem = $.create(['div']);
-        equals(elem, undefined, 'Create element (array)');
+        equal(elem, undefined, 'Create element (array)');
         elem = $.create(1);
-        equals(elem, undefined, 'Create element (int)');
+        equal(elem, undefined, 'Create element (int)');
         elem = $.create(1.2);
-        equals(elem, undefined, 'Create element (float)');
+        equal(elem, undefined, 'Create element (float)');
         elem = $.create($);
-        equals(elem, undefined, 'Create element (boolean)');
+        equal(elem, undefined, 'Create element (boolean)');
     });
-    
+
     test('Attributes', function () {
         expect(10);
-        
         var elem = $.create('div', {attributes: {id: 'testId'}});
-        
-        equals(elem.attr('id'), 'testId', 'Set single attribute');
+        equal(elem.attr('id'), 'testId', 'Set single attribute');
         elem = $.create('div', {attributes: {id: 'testId', name: 'testName'}});
-        equals(elem.attr('id'), 'testId', 'Set multiple attributes. Check id');
-        equals(elem.attr('name'), 'testName', 'Set multiple attributes. Check name');
+        equal(elem.attr('id'), 'testId', 'Set multiple attributes. Check id');
+        equal(elem.attr('name'), 'testName', 'Set multiple attributes. Check name');
         elem = $.create('div', {attributes: null});
         ok(isEmptyOrUndefined(elem.attr('id')), 'Set attribute (null)');
         elem = $.create('div', {attributes: ['id: myId']});
@@ -61,72 +56,62 @@ $(function () {
         elem = $.create('div', {attributes: $});
         ok(isEmptyOrUndefined(elem.attr('id')), 'Set attribute (function)');
     });
-    
     test('Event handlers', function () {
         expect(1);
-        
         var elem = $.create('div', {events: {
             click: function () {
                 testVal = 123;
             }
         }});
-        
         elem.trigger('click');
-        
-        equals(testVal, 123, 'Create element with click event handler');
+        equal(testVal, 123, 'Create element with click event handler');
     });
-    
+
     test('Children', function () {
         expect(11);
-        
         var elem = $.create('div', {children: 'testText'});
-        
-        equals(elem.text(), 'testText', 'Create text node');
+        equal(elem.text(), 'testText', 'Create text node');
         elem = $.create('div', {children: $.create('p')});
-        equals(elem.children().get(0).tagName, 'P', 'Create tree with single child (object)');
+        equal(elem.children().get(0).tagName, 'P', 'Create tree with single child (object)');
         elem = $.create('div', {children: [$.create('p')]});
-        equals(elem.children().get(0).tagName, 'P', 'Create tree with single child (array)');
+        equal(elem.children().get(0).tagName, 'P', 'Create tree with single child (array)');
         elem = $.create('div', {children: [$.create('p'), $.create('span')]});
-        equals(elem.children().get(0).tagName, 'P', 'Create tree with several children. Get first child');
-        equals(elem.children().get(1).tagName, 'SPAN', 'Create tree with several children. Get second child');
+        equal(elem.children().get(0).tagName, 'P', 'Create tree with several children. Get first child');
+        equal(elem.children().get(1).tagName, 'SPAN', 'Create tree with several children. Get second child');
         elem = $.create('div', {children: null});
-        equals(elem.children().length, 0, 'Create element with child nodes (null)');
+        equal(elem.children().length, 0, 'Create element with child nodes (null)');
         elem = $.create('div', {children: {one: $.create('p'), two: $.create('span')}});
-        equals(elem.children().length, 0, 'Create element with child nodes (object)');
+        equal(elem.children().length, 0, 'Create element with child nodes (object)');
         elem = $.create('div', {children: 1});
-        equals(elem.children().length, 0, 'Create element with child nodes (int)');
+        equal(elem.children().length, 0, 'Create element with child nodes (int)');
         elem = $.create('div', {children: 1.2});
-        equals(elem.children().length, 0, 'Create element with child nodes (float)');
+        equal(elem.children().length, 0, 'Create element with child nodes (float)');
         elem = $.create('div', {children: true});
-        equals(elem.children().length, 0, 'Create element with child nodes (boolean)');
+        equal(elem.children().length, 0, 'Create element with child nodes (boolean)');
         elem = $.create('div', {children: $});
-        equals(elem.children().length, 0, 'Create element with child nodes (function)');
+        equal(elem.children().length, 0, 'Create element with child nodes (function)');
     });
-    
     test('Root element', function () {
         expect(10);
-        
         var elem = $.create('div', {root: null});
-        
-        equals(elem.get(0).tagName, 'DIV', 'Create element with given root (null)');
+        equal(elem.get(0).tagName, 'DIV', 'Create element with given root (null)');
         elem = $.create('div', {root: undefined});
-        equals(elem.get(0).tagName, 'DIV', 'Create element with given root (undefined)');
+        equal(elem.get(0).tagName, 'DIV', 'Create element with given root (undefined)');
         elem = $.create('div', {root: document});
-        equals(elem.get(0).tagName, 'DIV', 'Create element with given root (object)');
+        equal(elem.get(0).tagName, 'DIV', 'Create element with given root (object)');
         elem = $.create('div', {root: 1});
-        equals(elem, undefined, 'Create element with given root (int)');
+        equal(elem, undefined, 'Create element with given root (int)');
         elem = $.create('div', {root: 1.2});
-        equals(elem, undefined, 'Create element with given root (float)');
+        equal(elem, undefined, 'Create element with given root (float)');
         elem = $.create('div', {root: 'document'});
-        equals(elem, undefined, 'Create element with given root (string)');
+        equal(elem, undefined, 'Create element with given root (string)');
         elem = $.create('div', {root: true});
-        equals(elem, undefined, 'Create element with given root (boolean)');
+        equal(elem, undefined, 'Create element with given root (boolean)');
         elem = $.create('div', {root: []});
-        equals(elem, undefined, 'Create element with given root (array)');
+        equal(elem, undefined, 'Create element with given root (array)');
         elem = $.create('div', {root: $});
-        equals(elem, undefined, 'Create element with given root (function)');
-        
+        equal(elem, undefined, 'Create element with given root (function)');
         elem = $.create('div', {root: $('iframe').get(0).contentDocument});
-        equals(elem.get(0).tagName, 'DIV', 'Create element in iFrame');
+        equal(elem.get(0).tagName, 'DIV', 'Create element in iFrame');
     });
 });
