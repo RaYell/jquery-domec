@@ -28,7 +28,7 @@ $.create(name[, options]);
 | -------- | -------- | --------------- | ----------------- |
 | ```object``` | ```attributes``` | element properties to be set | ```{}``` |
 | ```object``` | ```events```     | event handlers to be bind with created element, object keys should be strings matching event names and values should be valid event handlers (functions) | ```{}``` |
-| ```string|array``` | ```children```   | child elements (could also contain text value), passed value will be cast to ```string``` type if it's not of ```object``` type | ```''``` |
+| ```string/array``` | ```children```   | child elements (could also contain text value), passed value will be cast to ```string``` type if it's not of ```object``` type | ```''``` |
 | ```object``` | ```root``` | document root element on which new DOM elements should be created, i.e. when the site is using iFrames DOM elements must be created using iFrame's document object if they are to be used inside an iFrame | ```document``` |
 
 #### Examples
