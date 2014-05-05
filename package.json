@@ -1,23 +1,23 @@
 {
-    "name": "jquery-jec",
-    "version": "1.1.0",
-    "description": "jQuery DOM Elements Creator",
-    "main": "jquery.domec.js",
-    "directories": {
-        "test": "tests"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/RaYell/jquery-jec"
-    },
-    "author": "Lukasz Rajchel",
-    "license": "Apache",
-    "bugs": {
-        "url": "https://github.com/RaYell/jquery-jec/issues"
-    },
-    "homepage": "https://github.com/RaYell/jquery-jec",
-    "devDependencies": {
-        "grunt-contrib-qunit": "^0.4.0",
-        "grunt": "^0.4.4"
-    }
+  "name": "jquery-jec",
+  "version": "1.1.0",
+  "description": "jQuery DOM Elements Creator",
+  "main": "jquery.domec.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaYell/jquery-jec"
+  },
+  "author": "Lukasz Rajchel",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/RaYell/jquery-jec/issues"
+  },
+  "homepage": "https://github.com/RaYell/jquery-jec",
+  "devDependencies": {
+    "grunt-contrib-qunit": "^0.4.0",
+    "grunt": "^0.4.4"
+  }
 }
