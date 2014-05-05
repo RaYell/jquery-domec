@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                         'tests/index.html?coverage=true&gruntReport',
                         'tests/jquery2.html?coverage=true&gruntReport'
                     ],
-                    threshold: 70
+                    threshold: 100
                 }
             }
         }
