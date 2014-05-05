@@ -18,6 +18,7 @@
   "homepage": "https://github.com/RaYell/jquery-jec",
   "devDependencies": {
     "grunt-contrib-qunit": "^0.4.0",
-    "grunt": "^0.4.4"
+    "grunt": "^0.4.4",
+    "grunt-blanket-qunit": "^0.2.0"
   }
 }
