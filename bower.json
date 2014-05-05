@@ -1,0 +1,21 @@
+{
+    "name": "jquery-domec",
+    "version": "1.1.0",
+    "author": "Lukasz Rajchel",
+    "description": "jQuery DOM Element Creator",
+    "keywords": [
+        "jQuery",
+        "DOM",
+        "create"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "server.js",
+        "tools",
+        "README.md"
+    ]
+}
