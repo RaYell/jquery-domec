@@ -1,6 +1,6 @@
 #### Requirements
 
-jQuery library is required to use this extension. It can be downloaded from [[http://jquery.com|jQuery Web Page]].
+jQuery library is required to use this extension. It can be downloaded from [jQuery Web Page](http://jquery.com).
 
 #### Setup
 
