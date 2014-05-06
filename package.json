@@ -1,20 +1,20 @@
 {
-  "name": "jquery-jec",
+  "name": "jquery-domec",
   "title": "jQuery DOM Elements Creator",
   "version": "1.1.0",
   "description": "jQuery library for quick and easy DOM elements creation",
-  "main": "jquery-domec.js",
+  "main": "dist/jquery-domec.js",
   "author": {
     "name": "Lukasz Rajchel",
     "url": "http://rajchel.pl"
   },
-  "homepage": "https://github.com/RaYell/jquery-jec",
+  "homepage": "https://github.com/RaYell/jquery-domec",
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RaYell/jquery-jec"
+    "url": "https://github.com/RaYell/jquery-domec"
   },
   "keywords": [
     "jquery",
@@ -22,7 +22,7 @@
     "domec"
   ],
   "bugs": {
-    "url": "https://github.com/RaYell/jquery-jec/issues"
+    "url": "https://github.com/RaYell/jquery-domec/issues"
   },
   "licenses": [
     {
