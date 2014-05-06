@@ -10,7 +10,7 @@
     <div id="mocha">
         <iframe class="hidden"></iframe>
     </div>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../src/jquery-domec.js" data-cover></script>
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
@@ -30,7 +30,7 @@
         if (navigator.userAgent.indexOf('PhantomJS') < 0) {
             mocha.run();
         } else {
-            blanket.options("reporter", "../node_modules/grunt-blanket-mocha/support/grunt-reporter.js");
+            blanket.options('reporter', '../node_modules/grunt-blanket-mocha/support/grunt-reporter.js');
         }
     </script>
 </body>

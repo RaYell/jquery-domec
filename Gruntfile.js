@@ -33,8 +33,7 @@ module.exports = function (grunt) {
         mocha: {
             all: {
                 src: [
-                    'test/testrunner-jquery1.html',
-                    'test/testrunner-jquery2.html'
+                    'test/*.html'
                 ]
             },
             options: {
@@ -44,8 +43,7 @@ module.exports = function (grunt) {
         blanket_mocha: {
             all: {
                 src: [
-                    'test/testrunner-jquery1.html',
-                    'test/testrunner-jquery2.html'
+                    'test/*.html'
                 ],
                 options: {
                     threshold: 100,
@@ -72,7 +70,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', ['copy', 'uglify']);
-    grunt.registerTask('test', ['jslint', 'jshint', 'mocha']);
+    grunt.registerTask('test', ['jslint', 'jshint', 'blanket_mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
     grunt.registerTask('default', ['build', 'test', 'cover']);
 };
