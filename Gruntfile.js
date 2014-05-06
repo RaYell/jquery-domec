@@ -3,8 +3,27 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-blanket');
     grunt.loadNpmTasks('grunt-blanket-mocha');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.initConfig({
+        copy: {
+            main: {
+                expand: true,
+                flatten: true,
+                src: 'src/*',
+                dest: 'dist/',
+            },
+        },
+        uglify: {
+            options: {
+                mangle: false
+            },
+            my_target: {
+                files: {
+                    'dist/jquery-domec.min.js': ['dist/jquery-domec.js']
+                }
+            }
+        },
         blanket_qunit: {
             all: {
                 options: {
@@ -13,16 +32,6 @@ module.exports = function (grunt) {
                         'tests/jquery2.html?coverage=true&gruntReport'
                     ],
                     threshold: 100
-                }
-            }
-        },
-        uglify: {
-            options: {
-                mangle: false
-            },
-            my_target: {
-                files: {
-                    'jquery-domec.min.js': ['jquery-domec.js']
                 }
             }
         },
@@ -39,9 +48,11 @@ module.exports = function (grunt) {
         },
         blanket: {
             options: {},
-            files: {
-                'src-cov/': ['/src'],
-            },
+            your_target: {
+                files: {
+                    'src-cov/': ['src'],
+                }
+            }
         },
         blanket_mocha: {
             test: {
@@ -57,8 +68,8 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['uglify', 'mocha', 'blanket']);
-    grunt.registerTask('build', ['uglify']);
+    grunt.registerTask('default', ['copy', 'uglify', 'mocha', 'blanket']);
+    grunt.registerTask('build', ['copy', 'uglify']);
     grunt.registerTask('test', ['mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
 };

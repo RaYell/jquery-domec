@@ -1,8 +1,14 @@
 {
   "name": "jquery-jec",
+  "title": "jQuery DOM Elements Creator",
   "version": "1.1.0",
-  "description": "jQuery DOM Elements Creator",
+  "description": "jQuery library for quick and easy DOM elements creation",
   "main": "jquery-domec.js",
+  "author": {
+    "name": "Lukasz Rajchel",
+    "url": "http://rajchel.pl"
+  },
+  "homepage": "https://github.com/RaYell/jquery-jec",
   "directories": {
     "test": "tests"
   },
@@ -10,12 +16,21 @@
     "type": "git",
     "url": "https://github.com/RaYell/jquery-jec"
   },
-  "author": "Lukasz Rajchel",
-  "license": "Apache",
+  "keywords": [
+    "jquery",
+    "dom",
+    "domec"
+  ],
   "bugs": {
     "url": "https://github.com/RaYell/jquery-jec/issues"
   },
-  "homepage": "https://github.com/RaYell/jquery-jec",
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://github.com/RaYell/jquery-domec/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-uglify": "^0.4.0",
@@ -24,6 +39,7 @@
     "grunt-mocha": "^0.4.10",
     "grunt-blanket": "0.0.8",
     "blanket": "^1.1.6",
-    "grunt-blanket-mocha": "^0.4.0"
+    "grunt-blanket-mocha": "^0.4.0",
+    "grunt-contrib-copy": "^0.5.0"
   }
 }
