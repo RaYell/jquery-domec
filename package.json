@@ -31,7 +31,7 @@
     }
   ],
   "dependencies": {
-      "jquery": "^2.1.1"
+    "jquery": "^2.1.1"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
@@ -45,7 +45,6 @@
     "grunt-contrib-copy": "^0.5.0",
     "grunt-jslint": "^1.1.10",
     "grunt-contrib-jshint": "^0.10.0",
-    "express": "^4.1.1",
-    "open": "0.0.5"
+    "http-server": "^0.6.1"
   }
 }
