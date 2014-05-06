@@ -41,14 +41,6 @@ module.exports = function (grunt) {
                 run: true
             }
         },
-        blanket: {
-            options: {},
-            all: {
-                files: {
-                    'src-cov/': ['src']
-                }
-            }
-        },
         blanket_mocha: {
             all: {
                 src: [

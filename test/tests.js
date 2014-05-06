@@ -1,10 +1,11 @@
 /*jslint indent: 4, maxlen: 120 */
-/*global describe, it, chai, $, document*/
+/*global describe, it, document, window, require*/
 /*properties assert, attr, attributes, children, class, click, contentDocument, create, equal, events, get, id,
 lengthOf, name, one, root, tagName, text, trigger, two*/
 describe('DOMEC', function () {
     'use strict';
-    var assert = chai.assert;
+    var assert = require('chai').assert,
+        $ = require('jquery')(window);
     describe('Element creation', function () {
         it('should create a new div', function () {
             var elem = $.create('div');
