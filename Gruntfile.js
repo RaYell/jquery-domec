@@ -9,10 +9,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-blanket-mocha');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.initConfig({
         copy: {
-            main: {
+            dist: {
                 expand: true,
                 flatten: true,
                 src: 'src/*',
@@ -23,7 +24,7 @@ module.exports = function (grunt) {
             options: {
                 mangle: false
             },
-            my_target: {
+            dist: {
                 files: {
                     'dist/jquery-domec.min.js': ['dist/jquery-domec.js']
                 }
@@ -42,14 +43,14 @@ module.exports = function (grunt) {
         },
         blanket: {
             options: {},
-            my_target: {
+            all: {
                 files: {
                     'src-cov/': ['src']
                 }
             }
         },
         blanket_mocha: {
-            test: {
+            all: {
                 src: [
                     'test/testrunner-jquery1.html',
                     'test/testrunner-jquery2.html'
@@ -61,18 +62,25 @@ module.exports = function (grunt) {
             }
         },
         jslint: {
-            client: {
+            all: {
                 src: [
                     'src/*.js',
                     'test/*.js',
                     'Gruntfile.js'
                 ]
             }
+        },
+        jshint: {
+            all: [
+                'src/*.js',
+                'test/*.js',
+                'Gruntfile.js'
+            ]
         }
     });
 
     grunt.registerTask('build', ['copy', 'uglify']);
-    grunt.registerTask('test', ['jslint', 'mocha']);
+    grunt.registerTask('test', ['jslint', 'jshint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
     grunt.registerTask('default', ['build', 'test', 'cover']);
 };
