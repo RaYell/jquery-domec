@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-blanket');
     grunt.loadNpmTasks('grunt-blanket-mocha');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-jslint');
 
     grunt.initConfig({
         copy: {
@@ -54,11 +55,19 @@ module.exports = function (grunt) {
                     run: true
                 }
             }
+        },
+        jslint: {
+            client: {
+                src: [
+                    'src/*.js',
+                    'test/*.js'
+                ]
+            }
         }
     });
 
-    grunt.registerTask('default', ['copy', 'uglify', 'mocha', 'blanket']);
     grunt.registerTask('build', ['copy', 'uglify']);
-    grunt.registerTask('test', ['mocha']);
+    grunt.registerTask('test', ['jslint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
+    grunt.registerTask('default', ['build', 'test', 'cover']);
 };
