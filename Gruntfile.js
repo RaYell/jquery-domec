@@ -24,22 +24,11 @@ module.exports = function (grunt) {
                 }
             }
         },
-        blanket_qunit: {
-            all: {
-                options: {
-                    urls: [
-                        'tests/index.html?coverage=true&gruntReport',
-                        'tests/jquery2.html?coverage=true&gruntReport'
-                    ],
-                    threshold: 100
-                }
-            }
-        },
         mocha: {
             all: {
                 src: [
-                    'tests/testrunner-jquery1.html',
-                    'tests/testrunner-jquery2.html'
+                    'test/testrunner-jquery1.html',
+                    'test/testrunner-jquery2.html'
                 ],
             },
             options: {
@@ -57,8 +46,8 @@ module.exports = function (grunt) {
         blanket_mocha: {
             test: {
                 src: [
-                    'tests/testrunner-jquery1.html',
-                    'tests/testrunner-jquery2.html'
+                    'test/testrunner-jquery1.html',
+                    'test/testrunner-jquery2.html'
                 ],
                 options: {
                     threshold: 100,
