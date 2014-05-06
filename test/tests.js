@@ -1,7 +1,9 @@
 /*jslint indent: 4, maxlen: 120 */
 /*global describe, it, chai, $, document*/
-
+/*properties assert, attr, attributes, children, class, click, contentDocument, create, equal, events, get, id,
+lengthOf, name, one, root, tagName, text, trigger, two*/
 describe('DOMEC', function () {
+    'use strict';
     var assert = chai.assert;
     describe('Element creation', function () {
         it('should create a new div', function () {
@@ -39,7 +41,9 @@ describe('DOMEC', function () {
             assert.equal(elem, undefined);
         });
         it('should fail to create element with name as function', function () {
-            var elem = $.create(function () {});
+            var elem = $.create(function () {
+                return true;
+            });
             assert.equal(elem, undefined);
         });
     });
@@ -108,21 +112,23 @@ describe('DOMEC', function () {
         });
         it('should fail to set attributes given as function', function () {
             var elem = $.create('div', {
-                attributes: function () {}
+                attributes: function () {
+                    return true;
+                }
             });
             assert.lengthOf(elem.get(0).attributes, 0);
         });
     });
     describe('Event handlers', function () {
         it('should create a new div with click event handler', function () {
-            var testVal = 0;
-            var elem = $.create('div', {
-                events: {
-                    click: function () {
-                        testVal = 123;
+            var testVal = 0,
+                elem = $.create('div', {
+                    events: {
+                        click: function () {
+                            testVal = 123;
+                        }
                     }
-                }
-            });
+                });
             elem.trigger('click');
             assert.equal(testVal, 123);
         });
@@ -195,7 +201,9 @@ describe('DOMEC', function () {
         });
         it('should fail to create nested elements given as function', function () {
             var elem = $.create('div', {
-                children: function () {}
+                children: function () {
+                    return true;
+                }
             });
             assert.lengthOf(elem.children(), 0);
         });
@@ -257,32 +265,11 @@ describe('DOMEC', function () {
         });
         it('should fail to create element with root given as function', function () {
             var elem = $.create('div', {
-                root: function () {}
+                root: function () {
+                    return true;
+                }
             });
             assert.equal(elem, undefined);
         });
     });
 });
-
-/*
-$(function () {
-	'use strict';
-    
-    test('Root element', function () {
-        
-        elem = $.create('div', {root: 1});
-        equal(elem, undefined, 'Create element with given root (int)');
-        elem = $.create('div', {root: 1.2});
-        equal(elem, undefined, 'Create element with given root (float)');
-        elem = $.create('div', {root: 'document'});
-        equal(elem, undefined, 'Create element with given root (string)');
-        elem = $.create('div', {root: true});
-        equal(elem, undefined, 'Create element with given root (boolean)');
-        elem = $.create('div', {root: []});
-        equal(elem, undefined, 'Create element with given root (array)');
-        elem = $.create('div', {root: $});
-        equal(elem, undefined, 'Create element with given root (function)');
-        
-    });
-});
-*/

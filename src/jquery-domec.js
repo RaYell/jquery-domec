@@ -3,18 +3,15 @@
  * http://code.google.com/p/jquery-domec
  *
  * Copyright (c) 2008-2009 Lukasz Rajchel (lukasz@rajchel.pl | http://rajchel.pl)
- * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
- * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
+ * Licensed under the Apache license (https://www.apache.org/licenses/LICENSE-2.0.html)
  *
- * Documentation :  http://code.google.com/p/jquery-domec/wiki/Documentation
- * Changelog     :  http://code.google.com/p/jquery-domec/wiki/Changelog
- *
+ * Website       :  https://github.com/RaYell/jquery-domec
  * Contributors  :  Lukasz Rajchel
  */
 
 /*jslint indent: 4, maxlen: 120 */
 /*global document, jQuery*/
-/*members DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create,
+/*properties DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create,
 createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, root, text, toString*/
 (function ($) {
     'use strict';
