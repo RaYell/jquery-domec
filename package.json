@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/RaYell/jquery-jec",
   "devDependencies": {
-    "grunt-contrib-qunit": "^0.4.0",
     "grunt": "^0.4.4",
-    "grunt-blanket-qunit": "^0.2.0",
-    "grunt-contrib-uglify": "^0.4.0"
+    "grunt-contrib-uglify": "^0.4.0",
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1",
+    "grunt-mocha": "^0.4.10",
+    "grunt-blanket": "0.0.8",
+    "blanket": "^1.1.6",
+    "grunt-blanket-mocha": "^0.4.0"
   }
 }
