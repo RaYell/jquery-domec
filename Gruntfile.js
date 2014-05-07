@@ -57,7 +57,8 @@ module.exports = function (grunt) {
             all: {
                 src: [
                     'src/*.js',
-                    'test/*.js',
+                    'test/tests.js',
+                    'test/main.js',
                     'Gruntfile.js'
                 ]
             }
@@ -65,7 +66,8 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 'src/*.js',
-                'test/*.js',
+                'test/tests.js',
+                'test/main.js',
                 'Gruntfile.js'
             ]
         }

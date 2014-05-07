@@ -8,6 +8,7 @@ require.config({
 });
 
 require(['chai'], function (chai) {
+    'use strict';
     window.assert = chai.assert;
     mocha.setup('bdd');
 

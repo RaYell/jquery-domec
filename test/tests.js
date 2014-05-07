@@ -1,5 +1,5 @@
 /*jslint indent: 4, maxlen: 120 */
-/*global describe, it, document, chai, $*/
+/*global describe, it, document, window, $*/
 /*properties assert, attr, attributes, children, class, click, contentDocument, create, equal, events, get, id,
 lengthOf, name, one, root, tagName, text, trigger, two*/
 describe('DOMEC', function () {
