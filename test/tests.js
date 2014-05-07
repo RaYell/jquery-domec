@@ -4,7 +4,7 @@
 lengthOf, name, one, root, tagName, text, trigger, two*/
 describe('DOMEC', function () {
     'use strict';
-    var assert = chai.assert;
+    var assert = window.assert;
     describe('Element creation', function () {
         it('should create a new div', function () {
             var elem = $.create('div');

@@ -10,26 +10,12 @@
     <div id="mocha">
         <iframe class="hidden"></iframe>
     </div>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../src/jquery-domec.js" data-cover></script>
     <script src="../node_modules/mocha/mocha.js"></script>
-    <script src="../node_modules/chai/chai.js"></script>
-    <script src="../node_modules/blanket/dist/mocha/blanket_mocha.min.js"></script>
+    <script data-main="main" src="../node_modules/requirejs/require.js"></script>
+    <script src="blanket.min.js" data-cover-only="../src/jquery-domec.js"></script>
     <script src="../node_modules/grunt-blanket-mocha/support/mocha-blanket.js"></script>
-
     <script>
-        mocha.setup('bdd');
-        mocha.reporter('html');
-    </script>
-
-    <!-- Tests -->
-    <script src="tests.js"></script>
-
-    <script>
-        // Only tests run in real browser, injected script run if options.run == true
-        if (navigator.userAgent.indexOf('PhantomJS') < 0) {
-            mocha.run();
-        } else {
+        if (window.PHANTOMJS) {
             blanket.options('reporter', '../node_modules/grunt-blanket-mocha/support/grunt-reporter.js');
         }
     </script>
