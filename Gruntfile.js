@@ -23,7 +23,9 @@ module.exports = function (grunt) {
         },
         uglify: {
             options: {
-                mangle: false
+                mangle: false,
+                sourceMap: 'dist/jquery-domec.js.map',
+                sourceMapURL: 'jquery-domec.js.map'
             },
             dist: {
                 files: {
