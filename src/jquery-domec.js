@@ -1,5 +1,5 @@
 /**
- * jQuery DOMEC (DOM Elements Creator) 1.1.0
+ * jQuery DOMEC (DOM Elements Creator) 1.2.0
  *
  * Copyright (c) 2008-2009 Lukasz Rajchel
  * Licensed under the Apache license(https: //www.apache.org/licenses/LICENSE-2.0.html)
