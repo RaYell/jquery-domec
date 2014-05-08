@@ -10,8 +10,8 @@
 
 /*jslint indent: 4, maxlen: 120 */
 /*global document, jQuery*/
-/*properties DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, bind, children, create,
-createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, root, text, toString*/
+/*properties DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, children, create,
+createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on, root, text, toString*/
 (function ($) {
     'use strict';
 
@@ -51,7 +51,7 @@ createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, roo
                     if ($.isPlainObject(events)) {
                         $.each(events, function (key, val) {
                             if (typeof key === 'string' && typeof val === 'function') {
-                                elem.bind(key, val);
+                                elem.on(key, val);
                             }
                         });
                     }
