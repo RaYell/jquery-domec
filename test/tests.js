@@ -7,7 +7,7 @@ describe('DOMEC', function () {
         assert = require('chai').assert;
         jsdom = require('jsdom');
         jquery = require('jquery');
-        wind = jsdom.jsdom("<html><body></body></html>").createWindow();
+        wind = jsdom.jsdom("<html><body><iframe></iframe></body></html>").createWindow();
 
         global.jQuery = jquery(wind);
         global.document = wind.document;
@@ -276,6 +276,12 @@ describe('DOMEC', function () {
                 }
             });
             assert.equal(elem, undefined);
+        });
+        it('should create a new div in iframe', function () {
+            var elem = $.create('div', {
+                root: $('iframe').get(0).contentDocument
+            });
+            assert.equal(elem.get(0).tagName, 'DIV');
         });
     });
 });
