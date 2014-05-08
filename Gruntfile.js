@@ -71,8 +71,8 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build', ['copy', 'uglify']);
     grunt.registerTask('test', ['jslint', 'jshint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
-    grunt.registerTask('default', ['build', 'test', 'cover']);
+    grunt.registerTask('build', ['test', 'cover', 'copy', 'uglify']);
+    grunt.registerTask('default', ['build']);
 };
