@@ -1,10 +1,22 @@
 /*jslint indent: 4, maxlen: 120 */
-/*global describe, it, document, window, $*/
-/*properties assert, attr, attributes, children, class, click, contentDocument, create, equal, events, get, id,
-lengthOf, name, one, root, tagName, text, trigger, two*/
+/*global describe, it, document, require, chai, global, $*/
 describe('DOMEC', function () {
     'use strict';
-    var assert = window.assert;
+    var assert, jsdom, jquery, wind;
+    if (typeof require === 'function') {
+        assert = require('chai').assert;
+        jsdom = require('jsdom');
+        jquery = require('jquery');
+        wind = jsdom.jsdom("<html><body></body></html>").createWindow();
+
+        global.jQuery = jquery(wind);
+        global.document = wind.document;
+        global.$ = global.jQuery;
+        require('../src/jquery-domec');
+    } else {
+        assert = chai.assert;
+    }
+
     describe('Element creation', function () {
         it('should create a new div', function () {
             var elem = $.create('div');
@@ -224,12 +236,6 @@ describe('DOMEC', function () {
         it('should create a new div defined root', function () {
             var elem = $.create('div', {
                 root: document
-            });
-            assert.equal(elem.get(0).tagName, 'DIV');
-        });
-        it('should create a new div in iframe', function () {
-            var elem = $.create('div', {
-                root: $('iframe').get(0).contentDocument
             });
             assert.equal(elem.get(0).tagName, 'DIV');
         });
