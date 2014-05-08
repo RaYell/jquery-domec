@@ -90,6 +90,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jslint', 'jshint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
-    grunt.registerTask('build', ['test', 'cover', 'copy', 'uglify']);
+    grunt.registerTask('build', ['copy', 'uglify']);
     grunt.registerTask('default', ['build']);
 };
