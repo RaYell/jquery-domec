@@ -8,6 +8,9 @@ require.config({
     shim: {
         domec: [
             'jquery'
+        ],
+        tests: [
+            'domec'
         ]
     }
 });
@@ -17,9 +20,7 @@ require(['chai'], function (chai) {
     window.assert = chai.assert;
     mocha.setup('bdd');
 
-    require(['domec'], function () {
-        require(['tests.js'], function () {
-            mocha.run();
-        });
+    require(['tests'], function () {
+        mocha.run();
     });
 });
