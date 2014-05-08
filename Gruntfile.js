@@ -1,4 +1,4 @@
-/*jslint indent: 4, maxlen: 120 */
+/*jslint indent: 4*/
 /*global module*/
 module.exports = function (grunt) {
     'use strict';
@@ -10,6 +10,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-shell');
 
     grunt.initConfig({
         copy: {
@@ -76,6 +77,14 @@ module.exports = function (grunt) {
                 'test/*.js',
                 'Gruntfile.js'
             ]
+        },
+        shell: {
+            coveralls: {
+                options: {
+                    stderr: false
+                },
+                command: './node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js'
+            }
         }
     });
 
