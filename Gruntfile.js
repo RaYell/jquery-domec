@@ -3,15 +3,6 @@
 module.exports = function (grunt) {
     'use strict';
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-mocha');
-    grunt.loadNpmTasks('grunt-blanket');
-    grunt.loadNpmTasks('grunt-blanket-mocha');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-jslint');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-shell');
-
     grunt.initConfig({
         copy: {
             dist: {
@@ -87,10 +78,28 @@ module.exports = function (grunt) {
                 },
                 command: './node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js'
             }
+        },
+        jsonlint: {
+            sample: {
+                src: [
+                    'package.json',
+                    'bower.json'
+                ]
+            }
         }
     });
 
-    grunt.registerTask('test', ['jslint', 'jshint', 'mocha']);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-mocha');
+    grunt.loadNpmTasks('grunt-blanket');
+    grunt.loadNpmTasks('grunt-blanket-mocha');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-jslint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-jsonlint');
+
+    grunt.registerTask('test', ['jslint', 'jshint', 'jsonlint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha']);
     grunt.registerTask('build', ['copy', 'uglify']);
     grunt.registerTask('default', ['build']);
