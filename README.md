@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/RaYell/jquery-domec.svg?branch=master)](https://travis-ci.org/RaYell/jquery-domec)
+[![Coverage Status](https://coveralls.io/repos/RaYell/jquery-domec/badge.png?branch=master)](https://coveralls.io/r/RaYell/jquery-domec?branch=master)
+
 #### Requirements
 
 jQuery library is required to use this extension. It can be downloaded from [jQuery Web Page](http://jquery.com).
