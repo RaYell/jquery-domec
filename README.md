@@ -10,7 +10,7 @@ jQuery library is required to use this extension. It can be downloaded from [jQu
 Install the library using Bower
 
 ```
-bower install jquery-domec
+bower install jquery-domec --save
 ```
 
 Import plugin file after importing the jQuery library.
