@@ -66,4 +66,3 @@ Create new ```<div>``` element with ```myId``` id value and bind click event han
 #### Links
 * [Incompatible Changes](https://github.com/RaYell/jquery-domec/wiki/Incompatible-Changes)
 * [Changelog](https://github.com/RaYell/jquery-domec/wiki/Changelog)
-* [Unit Tests](http://stuff.rajchel.pl/domec/tests)
