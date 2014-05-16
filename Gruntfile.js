@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                 src: [
                     'src/*.js',
                     'test/*.js',
-                    'Gruntfile.js'
+                    '*.js'
                 ]
             }
         },
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
             all: [
                 'src/*.js',
                 'test/*.js',
-                'Gruntfile.js'
+                '*.js'
             ]
         },
         mocha: {
