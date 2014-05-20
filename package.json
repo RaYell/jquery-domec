@@ -1,7 +1,7 @@
 {
   "name": "jquery-domec",
   "title": "jQuery DOM Elements Creator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "jQuery library for quick and easy DOM elements creation",
   "main": "dist/jquery-domec.js",
   "author": {
