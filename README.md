@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/RaYell/jquery-domec.svg?branch=master)](https://travis-ci.org/RaYell/jquery-domec)
 [![Coverage Status](https://coveralls.io/repos/RaYell/jquery-domec/badge.png?branch=master)](https://coveralls.io/r/RaYell/jquery-domec?branch=master)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 #### Requirements
 
