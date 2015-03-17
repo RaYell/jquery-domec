@@ -99,7 +99,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('test', ['jslint', 'jshint', 'jsonlint', 'mocha']);
-    grunt.registerTask('cover', ['blanket_mocha']);
+    grunt.registerTask('cover', ['blanket_mocha', 'shell:coveralls']);
     grunt.registerTask('build', ['copy', 'uglify']);
     grunt.registerTask('default', ['build']);
 };
