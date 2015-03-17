@@ -2,5 +2,12 @@ language: node_js
 node_js:
   - "0.10"
 before_install: npm install -g grunt-cli
-before_script: grunt build
-script: grunt test
+script:
+  - grunt build
+  - grunt test
+  - grunt cover
+after_script:
+  - ./node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | codeclimate
+addons:
+  code_climate:
+    repo_token: d5848152cbdea65f803c366cf4d001e74c9d326a2639052fd598222175b48cf9
