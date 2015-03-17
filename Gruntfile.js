@@ -12,7 +12,7 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'dist/jquery-domec.min.js': [
-                        'dist/jquery-domec.js'
+                        'src/jquery-domec.js'
                     ]
                 }
             }
