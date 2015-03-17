@@ -34,23 +34,24 @@
     "jquery": "^2.1.1"
   },
   "devDependencies": {
-    "grunt": "^0.4.4",
-    "grunt-contrib-uglify": "^0.4.0",
-    "mocha": "^1.18.2",
-    "chai": "^1.9.1",
-    "grunt-mocha": "^0.4.10",
-    "grunt-blanket": "0.0.8",
     "blanket": "^1.1.6",
+    "chai": "^1.9.1",
+    "codeclimate-test-reporter": "0.0.4",
+    "coveralls": "^2.10.0",
+    "grunt": "^0.4.4",
+    "grunt-blanket": "0.0.8",
     "grunt-blanket-mocha": "^0.4.0",
     "grunt-contrib-copy": "^0.5.0",
-    "grunt-jslint": "^1.1.10",
     "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-jslint": "^1.1.10",
+    "grunt-jsonlint": "^1.0.4",
+    "grunt-mocha": "^0.4.10",
+    "grunt-shell": "^0.7.0",
     "http-server": "^0.6.1",
     "jsdom": "^0.10.5",
-    "mocha-lcov-reporter": "0.0.1",
-    "coveralls": "^2.10.0",
-    "grunt-shell": "^0.7.0",
-    "grunt-jsonlint": "^1.0.4"
+    "mocha": "^1.18.2",
+    "mocha-lcov-reporter": "0.0.1"
   },
   "config": {
     "blanket": {
