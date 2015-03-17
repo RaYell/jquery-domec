@@ -4,14 +4,6 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.initConfig({
-        copy: {
-            dist: {
-                expand: true,
-                flatten: true,
-                src: 'src/*',
-                dest: 'dist/'
-            }
-        },
         uglify: {
             options: {
                 mangle: false,
@@ -88,7 +80,6 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -100,6 +91,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jslint', 'jshint', 'jsonlint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha', 'shell:coveralls']);
-    grunt.registerTask('build', ['copy', 'uglify']);
+    grunt.registerTask('build', ['uglify']);
     grunt.registerTask('default', ['build']);
 };
