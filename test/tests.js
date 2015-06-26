@@ -7,7 +7,7 @@ describe('DOMEC', function() {
         assert = require('chai').assert;
         jsdom = require('jsdom');
         jquery = require('jquery');
-        wind = jsdom.jsdom('<html><body><iframe></iframe></body></html>').createWindow();
+        wind = jsdom.jsdom('<html><body><iframe></iframe></body></html>').defaultView;
 
         global.jQuery = jquery(wind);
         global.document = wind.document;
