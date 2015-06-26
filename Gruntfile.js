@@ -1,6 +1,6 @@
 /*jslint indent: 4*/
 /*global module*/
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     'use strict';
 
     grunt.initConfig({
@@ -17,21 +17,22 @@ module.exports = function (grunt) {
                 }
             }
         },
-        jslint: {
-            all: {
-                src: [
-                    'src/*.js',
-                    'test/*.js',
-                    '*.js'
-                ]
-            }
-        },
         jshint: {
             all: [
                 'src/*.js',
                 'test/*.js',
                 '*.js'
             ]
+        },
+        jscs: {
+            src: [
+                'src/*.js',
+                'test/*.js',
+                '*.js'
+            ],
+            options: {
+                config: '.jscsrc'
+            }
         },
         mocha: {
             all: {
@@ -59,7 +60,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        blanket_mocha: {
+        blanket_mocha: { // jshint ignore:line
             all: {
                 src: [
                     'test/*.html'
@@ -75,7 +76,8 @@ module.exports = function (grunt) {
                 options: {
                     stderr: false
                 },
-                command: './node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js'
+                command: './node_modules/.bin/mocha --require blanket --reporter mocha-lcov-reporter | ' +
+                    './node_modules/coveralls/bin/coveralls.js'
             }
         }
     });
@@ -89,8 +91,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-blanket-mocha');
     grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('test', ['jslint', 'jshint', 'jsonlint', 'mocha']);
+    grunt.registerTask('test', ['jshint', 'jscs', 'jsonlint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha', 'shell:coveralls']);
     grunt.registerTask('build', ['uglify']);
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['build', 'test', 'blanket_mocha']);
 };

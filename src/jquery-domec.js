@@ -12,17 +12,17 @@
 /*global document, jQuery*/
 /*properties DOMEC, addAttributes, addChildren, addEventHandlers, append, attr, attributes, children, create,
 createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on, root, text, toString*/
-(function ($) {
+(function($) {
     'use strict';
 
     // DOMEC Core class
-    $.DOMEC = (function () {
+    $.DOMEC = (function() {
         // variables declaration
         // DOM element
-        var Element = (function () {
+        var Element = (function() {
             return {
                 // create element
-                create: function (name, root) {
+                create: function(name, root) {
                     // set default root if undefined
                     if (root === undefined || root === null) {
                         root = document;
@@ -36,9 +36,9 @@ createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on,
                 },
 
                 // add attributes
-                addAttributes: function (elem, attr) {
+                addAttributes: function(elem, attr) {
                     if ($.isPlainObject(attr)) {
-                        $.each(attr, function (key, val) {
+                        $.each(attr, function(key, val) {
                             if (typeof val === 'string' || typeof val === 'number') {
                                 elem.attr(key, val);
                             }
@@ -47,9 +47,9 @@ createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on,
                 },
 
                 // add event handlers
-                addEventHandlers: function (elem, events) {
+                addEventHandlers: function(elem, events) {
                     if ($.isPlainObject(events)) {
-                        $.each(events, function (key, val) {
+                        $.each(events, function(key, val) {
                             if (typeof key === 'string' && typeof val === 'function') {
                                 elem.on(key, val);
                             }
@@ -58,10 +58,10 @@ createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on,
                 },
 
                 // add child elements
-                addChildren: function (elem, children) {
+                addChildren: function(elem, children) {
                     if (children !== undefined && children !== null) {
                         if ($.isArray(children)) {
-                            $.each(children, function () {
+                            $.each(children, function() {
                                 elem.append(this);
                             });
                         } else if (children instanceof jQuery) {
@@ -76,7 +76,7 @@ createElement, each, events, extend, hasOwnProperty, isArray, isPlainObject, on,
 
         // DOMEC public members
         return {
-            create: function (name, options) {
+            create: function(name, options) {
                 var elem;
                 if ($.isPlainObject(options) && options.hasOwnProperty('root')) {
                     elem = Element.create(name, options.root);
