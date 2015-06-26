@@ -43,6 +43,7 @@
     "grunt-blanket-mocha": "^0.5.0",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-uglify": "^0.9.1",
+    "grunt-jscs": "^1.8.0",
     "grunt-jslint": "^1.1.14",
     "grunt-jsonlint": "^1.0.4",
     "grunt-mocha": "^0.4.13",

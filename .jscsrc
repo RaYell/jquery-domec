@@ -1,0 +1,27 @@
+{
+    "preset": "crockford",
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "case",
+        "return",
+        "try",
+        "catch",
+        "typeof"
+    ],
+    "disallowSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowMultipleLineBreaks": true,
+    "disallowMultipleSpaces": true,
+    "disallowSpaceAfterObjectKeys": true,
+    "safeContextKeyword": ["self"],
+    "requireMultipleVarDecl": null,
+    "validateParameterSeparator": ", ",
+    "validateQuoteMarks": "'",
+    "maximumLineLength": 120
+}

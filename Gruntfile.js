@@ -90,6 +90,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-blanket');
     grunt.loadNpmTasks('grunt-blanket-mocha');
     grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-jscs');
 
     grunt.registerTask('test', ['jshint', 'jscs', 'jsonlint', 'mocha']);
     grunt.registerTask('cover', ['blanket_mocha', 'shell:coveralls']);
