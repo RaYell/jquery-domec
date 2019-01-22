@@ -1,12 +1,5 @@
 # This project is no longer maintained!
 
-[![Bower version](https://badge.fury.io/bo/jquery-domec.svg)](http://badge.fury.io/bo/jquery-domec)
-[![Build Status](https://travis-ci.org/RaYell/jquery-domec.svg?branch=master)](https://travis-ci.org/RaYell/jquery-domec)
-[![Coverage Status](https://coveralls.io/repos/RaYell/jquery-domec/badge.png?branch=master)](https://coveralls.io/r/RaYell/jquery-domec?branch=master)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-[![Dependencies](https://david-dm.org/RaYell/jquery-domec.svg)](https://david-dm.org/RaYell/jquery-domec/)
-[![Dev Dependencies](https://david-dm.org/RaYell/jquery-domec/dev-status.svg)](https://david-dm.org/RaYell/jquery-domec#info=devDependencies)
-
 #### Requirements
 
 jQuery library is required to use this extension. It can be downloaded from [jQuery Web Page](http://jquery.com).
